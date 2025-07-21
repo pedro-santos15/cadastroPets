@@ -10,16 +10,17 @@ import model.vo.Nome;
 public class CadastroPet {
 
     public static void cadastrar(String caminho){
+        String[] respostas = Menu.getRespostas();
         Nome nome;
+        Tipo tipo = Tipo.valueOf(respostas[1]);
+        Sexo sexo = Sexo.valueOf(respostas[2]);
+        Endereco endereco;
         String idade;
         String peso;
-        Endereco endereco;
-        Tipo tipo;
-        Sexo sexo;
         String raca;
 
         Menu.leituraFormulario(caminho);
-        String[] respostas = Menu.getRespostas();
+
 
 
         if (respostas[0].isBlank()){
@@ -28,11 +29,9 @@ public class CadastroPet {
             nome = new Nome(respostas[0]);
         }
 
-        if (respostas[1].equalsIgnoreCase("Cachorro")|| respostas[1].equalsIgnoreCase("Gato")){
-            tipo = Tipo.valueOf(respostas[1]);
-        } else {
-            throw new RuntimeException("Favor informar um tipo válido (Cachorro/Gato)");
-        }
+        String[] enderecovect = respostas[3].split(",");
+
+
 
     }
 }

@@ -8,7 +8,12 @@ public class Main {
         String caminho = "formulario.txt";
         //Menu.menuInicial();
 
-        Menu.leituraFormulario(caminho);
+        try {
+            Menu.leituraFormulario(caminho);
+        } catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
+
 
     }
 }

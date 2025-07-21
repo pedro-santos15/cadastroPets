@@ -52,16 +52,23 @@ public class Menu {
                 System.out.println(line);
                 respostas[i] = sc.nextLine();
 
-                if (i == 1){
-                    if (!respostas[1].equalsIgnoreCase("CACHORRO")){
-                        if (!respostas[1].equalsIgnoreCase("GATO")){
-                            System.out.println("Tipo desconhecido! Favor informar o tipo correto (Cachorro/Gato)");
-                            break;
+                switch (i) {
+                    case 1 -> {
+                        if (!respostas[1].equalsIgnoreCase("CACHORRO")) {
+                            if (!respostas[1].equalsIgnoreCase("GATO")) {
+                                throw new RuntimeException("Tipo desconhecido! Favor informar o tipo correto (Cachorro/Gato)");
+                            }
                         }
                     }
+                    case 2 -> {
+                        if (!respostas[2].equalsIgnoreCase("MASCULINO")) {
+                            if (!respostas[2].equalsIgnoreCase("FEMININO")) {
+                                throw new RuntimeException("Sexo desconhecido! Favor informar o sexo correto (Masculino/Feminino)");
+                            }
+                        }
+                    }
+
                 }
-
-
                 line = br.readLine();
                 i++;
             }
