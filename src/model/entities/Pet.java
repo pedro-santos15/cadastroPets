@@ -5,9 +5,10 @@ import model.enums.Tipo;
 import model.exceptions.IdadeExcecao;
 import model.exceptions.PesoExcecao;
 import model.vo.Endereco;
+import model.vo.Nome;
 
 public class Pet {
-    private String nome;
+    private Nome nome;
     private String idade;
     private String peso;
     private Endereco endereco;
@@ -15,7 +16,7 @@ public class Pet {
     private Sexo sexo;
     private String raca;
 
-    public Pet(String nome, String idade, String peso, Endereco endereco, Tipo tipo, Sexo sexo, String raca) {
+    public Pet(Nome nome, String idade, String peso, Endereco endereco, Tipo tipo, Sexo sexo, String raca) {
         this.nome = nome;
         this.idade = idade;
         this.peso = peso;
@@ -25,11 +26,11 @@ public class Pet {
         this.raca = raca;
     }
 
-    public String getNome() {
+    public Nome getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(Nome nome) {
         this.nome = nome;
     }
 
@@ -111,5 +112,18 @@ public class Pet {
             throw new PesoExcecao("Peso preenchido incorretamente");
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "nome=" + nome +
+                ", idade='" + idade + '\'' +
+                ", peso='" + peso + '\'' +
+                ", endereco=" + endereco +
+                ", tipo=" + tipo +
+                ", sexo=" + sexo +
+                ", raca='" + raca + '\'' +
+                '}';
     }
 }

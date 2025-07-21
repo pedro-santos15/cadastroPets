@@ -9,7 +9,7 @@ public class Main {
         //Menu.menuInicial();
 
         try {
-            Menu.leituraFormulario(caminho);
+            Menu.menuInicial();
         } catch (RuntimeException e){
             System.out.println(e.getMessage());
         }
