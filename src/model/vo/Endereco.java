@@ -34,4 +34,11 @@ public class Endereco {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
+
+    @Override
+    public String toString() {
+        return "Rua " + getRua()
+                + ", " + getNumero()
+                + ", " + getCidade();
+    }
 }

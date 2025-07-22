@@ -67,12 +67,6 @@ public class Menu {
                 respostas[i] = sc.nextLine();
 
                 switch (i) {
-                    case 0 -> {
-                        if (respostas[0].isBlank() || Nome.validacaoNome(respostas[0])){
-
-                        }
-                    }
-
                     case 1 -> {
                         if (!respostas[1].equalsIgnoreCase("CACHORRO") || respostas[1].isBlank()) {
                             if (!respostas[1].equalsIgnoreCase("GATO")) {

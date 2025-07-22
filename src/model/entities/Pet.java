@@ -116,14 +116,12 @@ public class Pet {
 
     @Override
     public String toString() {
-        return "Pet{" +
-                "nome=" + nome +
-                ", idade='" + idade + '\'' +
-                ", peso='" + peso + '\'' +
-                ", endereco=" + endereco +
-                ", tipo=" + tipo +
-                ", sexo=" + sexo +
-                ", raca='" + raca + '\'' +
-                '}';
+        return nome +","
+                + tipo + ","
+                + sexo + ","
+                + endereco + ","
+                + idade + " anos,"
+                + peso + "kg ,"
+                + raca;
     }
 }

@@ -9,6 +9,16 @@ import model.exceptions.PesoExcecao;
 import model.vo.Endereco;
 import model.vo.Nome;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+
 public class CadastroPet {
 
     public static void cadastrar(String caminho){
@@ -74,7 +84,36 @@ public class CadastroPet {
 
         Pet pet = new Pet(nome, idade, peso, endereco, tipo, sexo, raca);
 
-        System.out.println(pet);
+        armazenamentoPet(pet);
+    }
 
+    public static void armazenamentoPet(Pet pet){
+
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm");
+
+        String nomeArquivo = fmt.format(LocalDateTime.now())
+                + pet.getNome().getNomeCompleto().replace(" ", "").toUpperCase() + ".txt";
+
+        File arquivo = new File("pets", nomeArquivo);
+
+        File diretorioArquivo = arquivo.getParentFile();
+        if (diretorioArquivo != null && !diretorioArquivo.exists()){
+            diretorioArquivo.mkdirs();
+        }
+
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(arquivo))) {
+
+        String[] respostas = pet.toString().split(",");
+
+        int i = 0;
+            for (String resposta : respostas) {
+                bw.write(i + 1 + " - " + resposta);
+                i++;
+                bw.newLine();
+            }
+
+        } catch (IOException e){
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
