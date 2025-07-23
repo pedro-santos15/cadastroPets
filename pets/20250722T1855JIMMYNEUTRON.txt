@@ -1,9 +1,0 @@
-1 - Jimmy Neutron
-2 - CACHORRO
-3 - MASCULINO
-4 - Rua Java
-5 -  1001
-6 -  Gotham
-7 - 14 anos
-8 - 6kg 
-9 - Yorkshire

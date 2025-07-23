@@ -103,14 +103,14 @@ public class CadastroPet {
 
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(arquivo))) {
 
-        String[] respostas = pet.toString().split(",");
+        String[] respostas = pet.toString().split("\\.");
 
-        int i = 0;
-            for (String resposta : respostas) {
-                bw.write(i + 1 + " - " + resposta);
-                i++;
+            for (int i = 0; i < respostas.length ; i++) {
+                bw.write(i + 1 + " - " + respostas[i]);
                 bw.newLine();
             }
+
+
 
         } catch (IOException e){
             System.out.println("Error: " + e.getMessage());
