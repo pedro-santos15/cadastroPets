@@ -7,6 +7,9 @@ import model.exceptions.PesoExcecao;
 import model.vo.Endereco;
 import model.vo.Nome;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pet {
     private Nome nome;
     private String idade;
@@ -16,6 +19,8 @@ public class Pet {
     private Sexo sexo;
     private String raca;
 
+    private static List<Pet> pets = new ArrayList<>();
+
     public Pet(Nome nome, String idade, String peso, Endereco endereco, Tipo tipo, Sexo sexo, String raca) {
         this.nome = nome;
         this.idade = idade;
@@ -24,6 +29,7 @@ public class Pet {
         this.tipo = tipo;
         this.sexo = sexo;
         this.raca = raca;
+        pets.add(this);
     }
 
     public Nome getNome() {
@@ -80,6 +86,14 @@ public class Pet {
 
     public void setRaca(String raca) {
         this.raca = raca;
+    }
+
+    public static List<Pet> getPets() {
+        return pets;
+    }
+
+    public static void adicionarPet(Pet pet){
+        pets.add(pet);
     }
 
     public static boolean validacaoIdade(String idade){

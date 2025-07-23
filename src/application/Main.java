@@ -1,6 +1,7 @@
 package application;
 
 import application.menu.Menu;
+import model.services.BuscaPet;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,7 +10,7 @@ public class Main {
         //Menu.menuInicial();
 
         try {
-            Menu.menuInicial();
+            BuscaPet.buscar();
         } catch (RuntimeException e){
             System.out.println(e.getMessage());
         }
