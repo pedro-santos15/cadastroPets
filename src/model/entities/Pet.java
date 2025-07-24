@@ -130,13 +130,12 @@ public class Pet {
 
     @Override
     public String toString() {
-        return nome +"."
-                + tipo + "."
-                + sexo + "."
-                + endereco + "."
-                + idade + " anos."
-                + peso + "kg."
+        return nome +" - "
+                + tipo + " - "
+                + sexo + " - "
+                + endereco + " - "
+                + idade + " anos - "
+                + peso + "kg - "
                 + raca;
-        //Colocar um . no tostring
     }
 }

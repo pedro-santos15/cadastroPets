@@ -30,6 +30,7 @@ public class Menu {
                     escolha = sc.nextInt();
 
                     while (escolha != 6){
+
                         switch (escolha){
                             case 1 -> CadastroPet.cadastrar("formulario.txt");
                             case 2 -> BuscaPet.buscar();
@@ -40,8 +41,9 @@ public class Menu {
                         }
 
                         escolhasMenu();
-                        sc.nextLine();
                         escolha = sc.nextInt();
+                        sc.nextLine();
+
                     }
 
 
@@ -51,12 +53,11 @@ public class Menu {
                 }
 
 
-
             } catch (InputMismatchException e) {
                 System.out.println(e.getMessage());
             }
         }
-        sc.close();
+
     }
 
     public static void leituraFormulario(String caminho) {
@@ -108,7 +109,6 @@ public class Menu {
         } catch (IOException e) {
             System.out.println("Erro: " + e.getMessage());
         }
-        sc.close();
     }
 
     public static void escolhasMenu() {

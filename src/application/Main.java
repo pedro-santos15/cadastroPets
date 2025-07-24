@@ -1,7 +1,8 @@
 package application;
 
 import application.menu.Menu;
-import model.services.BuscaPet;
+
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,7 +10,7 @@ public class Main {
         String caminho = "formulario.txt";
 
 
-        try {
+        try (Scanner sc = new Scanner(System.in)) {
             Menu.menuInicial();
         } catch (RuntimeException e){
             System.out.println(e.getMessage());

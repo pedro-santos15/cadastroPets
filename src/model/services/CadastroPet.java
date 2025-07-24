@@ -99,7 +99,7 @@ public class CadastroPet {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(arquivo))) {
 
-            String[] respostas = pet.toString().split("\\.");
+            String[] respostas = pet.toString().split("-");
 
             for (int i = 0; i < respostas.length; i++) {
                 bw.write(i + 1 + " - " + respostas[i]);
