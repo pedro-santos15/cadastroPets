@@ -36,29 +36,51 @@ public class BuscaPet {
                 buscaPets.put(criterio, sc.nextLine());
             }
 
-            List<Pet> filtrados;
+            Predicate<Pet> predicateTotal = p -> p.getTipo().toString().contains(buscaPets.get("tipo"));
 
             for (String s : buscaPets.keySet()) {
-                String teste = String.valueOf(s.equalsIgnoreCase(s));
-
-                switch (String.valueOf(s.equalsIgnoreCase(s)).toLowerCase()){
-                    case "nome" -> filtrados = Pet.getPets().stream()
-                            .filter(p -> p.getNome().getPrimeiroNome().contains(buscaPets.get(s)))
-                            .toList();
-                    case "sobrenome" -> filtrados = Pet.getPets().stream()
-                            .filter(p -> p.getNome().getSobrenome().contains(buscaPets.get(s)))
-                            .toList();
-                    case "sexo" -> filtrados = Pet.getPets().stream()
-                            .filter(p -> p.getSexo().toString().toLowerCase().contains(buscaPets.get(s)))
-                            .toList();
-                    case "idade" -> filtrados = Pet.getPets().stream()
-                            .filter(p -> p.getIdade().contains(buscaPets.get(s)))
-                            .toList();
-                    case "peso" -> filtrados = Pet.getPets().stream()
-                            .filter(p -> p.getPeso().contains(buscaPets.get(s)))
-                            .toList();
+                switch (s.toLowerCase()){
+                    case "nome" -> {
+                        Predicate<Pet> predicate = p -> p.getNome().getPrimeiroNome().contains(buscaPets.get(s));
+                        predicateTotal.and(predicate);
+                    }
+                    case "sobrenome" -> {
+                        Predicate<Pet> predicate = p -> p.getNome().getSobrenome().contains(buscaPets.get(s));
+                        predicateTotal.and(predicate);
+                    }
+                    case "sexo" ->  {
+                        Predicate<Pet> predicate = p -> p.getSexo().toString().contains(buscaPets.get(s));
+                    predicateTotal.and(predicate);
+                    }
+                    case "idade" -> {
+                        Predicate<Pet> predicate = p -> p.getIdade().contains(buscaPets.get(s));
+                        predicateTotal.and(predicate);
+                    }
+                    case "peso" -> {
+                        Predicate<Pet> predicate = p -> p.getPeso().contains(buscaPets.get(s));
+                        predicateTotal.and(predicate);
+                    }
+                    case "raça", "raca" ->{
+                        Predicate<Pet> predicate = p -> p.getRaca().contains(buscaPets.get(s));
+                        predicateTotal.and(predicate);
+                    }
+                    case "endereco", "endereço" -> {
+                        Predicate<Pet> predicate = p -> p.getEndereco().toString().contains(buscaPets.get(s));
+                        predicateTotal.and(predicate);
+                    }
+                    default -> throw new RuntimeException("Nenhum critério foi identificado");
                 }
             }
+            List<Pet> filtrados = Pet.getPets()
+                    .stream()
+                    .filter(predicateTotal)
+                    .toList();
+
+            if (filtrados.isEmpty()){
+                throw new RuntimeException("Sua busca não retornou nada, por favor tente outros critérios!");
+            }
+
+            System.out.println(filtrados);
         }
     }
 

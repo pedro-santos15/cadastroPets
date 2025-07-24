@@ -1,5 +1,6 @@
 package application.menu;
 
+import model.services.BuscaPet;
 import model.services.CadastroPet;
 import model.vo.Nome;
 
@@ -28,13 +29,21 @@ public class Menu {
                 if (sc.hasNextInt()) {
                     escolha = sc.nextInt();
 
-                    switch (escolha){
-                        case 1 -> CadastroPet.cadastrar("formulario.txt");
+                    while (escolha != 6){
+                        switch (escolha){
+                            case 1 -> CadastroPet.cadastrar("formulario.txt");
+                            case 2 -> BuscaPet.buscar();
+                        }
+
+                        if (escolha < 1 || escolha > 6) {
+                            throw new InputMismatchException("\nEntrada inválida! Por favor digite um número válido pelo sistema!\n");
+                        }
+
+                        escolhasMenu();
+                        sc.nextLine();
+                        escolha = sc.nextInt();
                     }
 
-                    if (escolha < 1 || escolha > 6) {
-                        throw new InputMismatchException("\nEntrada inválida! Por favor digite um número válido pelo sistema!\n");
-                    }
 
                 } else {
                     sc.next();

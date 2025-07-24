@@ -7,10 +7,10 @@ public class Main {
     public static void main(String[] args) {
 
         String caminho = "formulario.txt";
-        //Menu.menuInicial();
+
 
         try {
-            BuscaPet.buscar();
+            Menu.menuInicial();
         } catch (RuntimeException e){
             System.out.println(e.getMessage());
         }
