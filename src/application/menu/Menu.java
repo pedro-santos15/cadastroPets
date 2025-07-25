@@ -1,13 +1,14 @@
 package application.menu;
 
+import model.entities.Pet;
+import model.services.AlterarPet;
 import model.services.BuscaPet;
 import model.services.CadastroPet;
-import model.vo.Nome;
+import model.services.DeletarPet;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -29,11 +30,14 @@ public class Menu {
                 if (sc.hasNextInt()) {
                     escolha = sc.nextInt();
 
-                    while (escolha != 6){
+                    while (escolha != 6) {
 
-                        switch (escolha){
+                        switch (escolha) {
                             case 1 -> CadastroPet.cadastrar("formulario.txt");
-                            case 2 -> BuscaPet.buscar();
+                            case 2 -> AlterarPet.alterar();
+                            case 3 -> DeletarPet.deletar();
+                            case 4 -> Pet.getPets().forEach(System.out::println);
+                            case 5 -> BuscaPet.buscar();
                         }
 
                         if (escolha < 1 || escolha > 6) {
@@ -46,7 +50,6 @@ public class Menu {
 
                     }
 
-
                 } else {
                     sc.next();
                     throw new InputMismatchException("\nEntrada inválida! Por favor digite um número válido pelo sistema!\n");
@@ -55,6 +58,8 @@ public class Menu {
 
             } catch (InputMismatchException e) {
                 System.out.println(e.getMessage());
+            } finally {
+                System.out.println("Programa finalizado!");
             }
         }
 
@@ -70,7 +75,7 @@ public class Menu {
             while (line != null) {
                 System.out.println(line);
 
-                if (line.equals("4 - Qual endereço que ele foi encontrado?")){
+                if (line.equals("4 - Qual endereço que ele foi encontrado?")) {
                     line = br.readLine();
                     continue;
                 }
@@ -92,12 +97,12 @@ public class Menu {
                         }
                     }
                     case 3 -> {
-                        if (respostas[3].isBlank()){
+                        if (respostas[3].isBlank()) {
                             throw new RuntimeException("Favor informar uma rua valida!");
                         }
                     }
                     case 5 -> {
-                        if (respostas[5].isBlank()){
+                        if (respostas[5].isBlank()) {
                             throw new RuntimeException("Favor informar uma cidade existente");
                         }
                     }
@@ -112,7 +117,7 @@ public class Menu {
     }
 
     public static void escolhasMenu() {
-        System.out.println("1. Cadastrar um novo pet");
+        System.out.println("\n1. Cadastrar um novo pet");
         System.out.println("2. Alterar os dados do pet cadastrado");
         System.out.println("3. Deletar um pet cadastrado");
         System.out.println("4. Listar todos os pets cadastrados");

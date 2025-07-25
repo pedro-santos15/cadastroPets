@@ -45,7 +45,9 @@ public class Pet {
     }
 
     public void setIdade(String idade) {
-        this.idade = idade;
+        if (validacaoIdade(idade)) {
+            this.idade = idade;
+        }
     }
 
     public String getPeso() {
@@ -68,16 +70,8 @@ public class Pet {
         return tipo;
     }
 
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
-    }
-
     public Sexo getSexo() {
         return sexo;
-    }
-
-    public void setSexo(Sexo sexo) {
-        this.sexo = sexo;
     }
 
     public String getRaca() {
@@ -89,35 +83,38 @@ public class Pet {
     }
 
     public static List<Pet> getPets() {
+        if (pets.isEmpty()){
+            System.out.println("Atualmente não há nenhum pet cadastrado!");
+        }
         return pets;
     }
 
-    public static void adicionarPet(Pet pet){
+    public static void adicionarPet(Pet pet) {
         pets.add(pet);
     }
 
-    public static boolean validacaoIdade(String idade){
+    public static boolean validacaoIdade(String idade) {
         try {
-            if (idade.isBlank()){
+            if (idade.isBlank()) {
                 idade = "NÃO INFORMADO";
                 return true;
             }
             double valor = Double.parseDouble(idade);
-            if (idade.matches("^\\d+([.,]\\d+)?$") && Integer.parseInt(String.valueOf(Math.round(valor))) <= 20){
+            if (idade.matches("^\\d+([.,]\\d+)?$") && Integer.parseInt(String.valueOf(Math.round(valor))) <= 20) {
                 return true;
             } else {
                 throw new IdadeExcecao("Idade preenchida incorretamente");
             }
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IdadeExcecao("Idade preenchida incorretamente");
         }
     }
 
-    public static boolean validacaoPeso(String peso){
+    public static boolean validacaoPeso(String peso) {
         try {
             double valor = Double.parseDouble(peso);
             if (peso.matches("^\\d+([.,]\\d+)?$") && Integer.parseInt(String.valueOf(Math.round(valor))) < 60
-                    && Double.parseDouble(peso) > 0.5){
+                    && Double.parseDouble(peso) > 0.5) {
                 return true;
             } else {
                 throw new PesoExcecao("Peso preenchido incorretamente");
@@ -128,9 +125,13 @@ public class Pet {
 
     }
 
+    public static void removerPet(Pet pet) {
+        pets.remove(pet);
+    }
+
     @Override
     public String toString() {
-        return nome +" - "
+        return nome + " - "
                 + tipo + " - "
                 + sexo + " - "
                 + endereco + " - "

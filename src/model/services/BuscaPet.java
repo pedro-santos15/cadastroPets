@@ -6,6 +6,11 @@ import java.util.*;
 import java.util.function.Predicate;
 
 public class BuscaPet {
+    private static List<Pet> filtrados;
+
+    public static List<Pet> getFiltrados() {
+        return filtrados;
+    }
 
     public static void buscar() {
 
@@ -22,7 +27,6 @@ public class BuscaPet {
             String criterio = sc.nextLine();
 
             List<String> criterios;
-
 
 
             if (criterio.contains(" e ")) {
@@ -79,7 +83,7 @@ public class BuscaPet {
                     }
                 }
             }
-            List<Pet> filtrados = Pet.getPets()
+            filtrados = Pet.getPets()
                     .stream()
                     .filter(predicateTotal)
                     .toList();
@@ -88,16 +92,15 @@ public class BuscaPet {
                 System.out.println("Sua busca não retornou nada, por favor tente outros critérios!");
             }
 
-            for (int i = 0; i <= filtrados.size(); i++) {
+            for (int i = 0; i < filtrados.size(); i++) {
                 System.out.println((i + 1) + ". " + filtrados.get(i));
             }
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("Entrada inválida!");
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
     }
-
 
 
     public static void menuBusca() {
