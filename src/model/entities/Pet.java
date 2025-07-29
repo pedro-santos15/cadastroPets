@@ -95,16 +95,13 @@ public class Pet {
 
     public static boolean validacaoIdade(String idade) {
         try {
-            if (idade.isBlank()) {
-                idade = "NÃO INFORMADO";
-                return true;
-            }
             double valor = Double.parseDouble(idade);
             if (idade.matches("^\\d+([.,]\\d+)?$") && Integer.parseInt(String.valueOf(Math.round(valor))) <= 20) {
                 return true;
-            } else {
+            }else {
                 throw new IdadeExcecao("Idade preenchida incorretamente");
             }
+
         } catch (NumberFormatException e) {
             throw new IdadeExcecao("Idade preenchida incorretamente");
         }
